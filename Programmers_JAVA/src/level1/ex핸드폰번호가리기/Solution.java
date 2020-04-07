@@ -12,18 +12,18 @@ s는 길이 4 이상, 20이하인 문자열입니다.
 class Solution {
 	public String solution(String phone_number) {
 
-		String answer = "";
+		StringBuilder sb = new StringBuilder();
 
 		int length = phone_number.length();
 
 		for (int i = 0; i < length-4; i++) {
 
-			answer += "*";
+			sb.append('*');
 
 		}
 
-		answer += phone_number.substring(length - 4);
+		sb.append(phone_number.substring(length - 4));
 
-		return answer;
+		return sb.toString();
 	}
 }
