@@ -1,4 +1,4 @@
-package level1.나누어떨어지는숫자배열;
+package level1.ex나누어떨어지는숫자배열;
 
 /*
 문제 설명
