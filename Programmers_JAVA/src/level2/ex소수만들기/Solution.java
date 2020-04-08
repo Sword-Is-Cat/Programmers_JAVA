@@ -12,38 +12,22 @@ nums의 각 원소는 1 이상 1,000 이하의 자연수이며, 중복된 숫자가 들어있지 않습니다
 
 class Solution {
 	static int answer = 0;
-
 	public int solution(int[] nums) {
-
-		boolean[] visit = new boolean[nums.length];
 		int[] arr = new int[3];
-		
-		pickNo(arr, nums, visit, 0, 0);
-
+		pickNo(arr, nums, 0, 0);
 		return answer;
 	}
-
-	public void pickNo(int[] arr, int[] nums, boolean[] visit, int index, int start) {
+	public void pickNo(int[] arr, int[] nums, int index, int start) {
 		if (index == 3) {
 			if (isPrime(arr))
 				answer++;
 		} else {
-
-			for (int i = start; i < nums.length-2+index; i++) {
-				if (visit[i])
-					continue;
-				else {
-					arr[index] = nums[i];
-					visit[i] = true;
-					pickNo(arr, nums, visit, index+1, i+1);
-					visit[i] = false;
-				}
+			for (int i = start; i < nums.length - 2 + index; i++) {
+				arr[index] = nums[i];
+				pickNo(arr, nums, index + 1, i + 1);
 			}
-
 		}
-
 	}
-
 	public boolean isPrime(int[] arr) {
 		int sum = arr[0] + arr[1] + arr[2];
 		for (int i = 2; i * i <= sum; i++) {
