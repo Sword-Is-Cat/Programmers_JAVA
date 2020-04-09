@@ -1,47 +1,40 @@
-package level1.exÅ©·¹ÀÎÀÎÇü»Ì±â°ÔÀÓ;
+package level1.exí¬ë ˆì¸ì¸í˜•ë½‘ê¸°ê²Œì„;
 
 /*
-¹®Á¦ : https://programmers.co.kr/learn/courses/30/lessons/64061
+ë¬¸ì œ : https://programmers.co.kr/learn/courses/30/lessons/64061
 */
 
 import java.util.ArrayList;
+//import java.util.Stack;
 
 class Solution {
 	public int solution(int[][] board, int[] moves) {
+		
 		int answer = 0;
-
 		ArrayList<Integer> basket = new ArrayList<>();
+		//Stack<Integer> stack = new Stack<>();
 
 		for (int j : moves) { 
-        // n¹øÂ° ÀÌµ¿
 			for (int i = 0; i < board.length; i++) {
 				if (board[i][j-1] != 0) {
-                // ÀÎÇüÀÌ ÀÖ´Â Ä­À» Ã£À½
-					if (basket.size() == 0) {						
+					if (basket.size() == 0) {
+					//if(stack.empty() == 0) {
 						basket.add(board[i][j-1]);
-                    // ¿Å°ÜÁú ¹Ù±¸´Ï°¡ ºñ¾ú´Ù¸é ÀÎÇü Ãß°¡
-					}else if(basket.get(basket.size()-1) == board[i][j-1]) {						
+						//stack.push(E);
+					}else if(basket.get(basket.size()-1) == board[i][j-1]) {
+					//else if(stack.peek() == E)
 						basket.remove(basket.size()-1);
+						//stack.pop()
 						answer += 2;
-                    // ¹Ù±¸´Ï¿¡ µé¾îÀÖ´Â ÀÎÇüÀÌ Áö±İ³Ö´Â ÀÎÇü°ú µ¿ÀÏÇÏ´Ù¸é ¹Ù±¸´Ï ÃÖ»ó´Ü ÀÎÇü Á¦°Å
-                    // ÀÎÇüÀº ÇÑ¹ø¿¡ µÎ°³°¡ Á¦°ÅµÇ¹Ç·Î answer+2
-					}else {						
+					}else {	
 						basket.add(board[i][j-1]);
+						//stack.push(E);
 					}
-                    // ¾Æ¹« »óÈ²µµ ¾Æ´Ï¹Ç·Î ¹Ù±¸´Ï¿¡ ÀÎÇüÃß°¡
-					board[i][j-1] = 0;					
+					board[i][j-1] = 0;
 					break;
-                    // ÀÎÇüÀ» »ÌÀºÄ­À» ºóÄ­À¸·Î ¼³Á¤ÇÏ°í n¹øÂ° move Á¾·á
 				}
 			}
 		}
 		return answer;
 	}
-
-//	public static void main(String[] args) {
-//		Solution s = new Solution();
-//		int[][] board = {{0,0,0,0,0},{0,0,1,0,3},{0,2,5,0,1},{4,2,4,4,2},{3,5,1,3,1}};
-//		int[] moves = {1,5,3,5,1,2,1,4};
-//		System.out.println(s.solution(board, moves));
-//	}
 }

@@ -1,4 +1,4 @@
-package level2.최솟값만들기;
+package level2.ex최솟값만들기;
 
 /*
 문제 설명
