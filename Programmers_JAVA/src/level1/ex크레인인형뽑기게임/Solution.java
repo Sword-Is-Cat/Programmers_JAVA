@@ -1,7 +1,7 @@
-package level1.exÅ©·¹ÀÎÀÎÇü»Ì±â°ÔÀÓ;
+package level1.exí¬ë ˆì¸ì¸í˜•ë½‘ê¸°ê²Œì„;
 
 /*
- * ¹®Á¦ : https://programmers.co.kr/learn/courses/30/lessons/64061
+ * ë¬¸ì œ : https://programmers.co.kr/learn/courses/30/lessons/64061
 */
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ class Solution {
 			for (int i = 0; i < board.length; i++) {
 				if (board[i][j-1] != 0) {
 					if (basket.size() == 0) {
-					//if(stack.empty() == 0) {
+					//if(stack.empty()) {
 						basket.add(board[i][j-1]);
 						//stack.push(E);
 					}else if(basket.get(basket.size()-1) == board[i][j-1]) {
