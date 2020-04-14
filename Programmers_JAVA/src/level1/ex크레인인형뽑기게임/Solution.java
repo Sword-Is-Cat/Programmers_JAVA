@@ -1,8 +1,8 @@
 package level1.ex크레인인형뽑기게임;
 
 /*
- * 문제 : https://programmers.co.kr/learn/courses/30/lessons/64061
-*/
+ * https://programmers.co.kr/learn/courses/30/lessons/64061
+ */
 
 import java.util.ArrayList;
 //import java.util.Stack;
@@ -18,7 +18,7 @@ class Solution {
 			for (int i = 0; i < board.length; i++) {
 				if (board[i][j-1] != 0) {
 					if (basket.size() == 0) {
-					//if(stack.empty() == 0) {
+					//if(stack.empty()) {
 						basket.add(board[i][j-1]);
 						//stack.push(E);
 					}else if(basket.get(basket.size()-1) == board[i][j-1]) {
