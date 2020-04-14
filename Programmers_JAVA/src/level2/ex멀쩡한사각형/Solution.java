@@ -17,11 +17,11 @@ class Solution {
 	public long solution(int w, int h) {
 
 		long answer = (long) w * h - w - h;
-		int gcd = gcd(w,h);
-		return answer+gcd;
+		int gcd = gcd(w, h);
+		return answer + gcd;
 	}
-    
-    public int gcd(int a, int b){
-        return (a%b==0)?b:gcd(b,a%b);
-    }
+
+	public int gcd(int a, int b) {
+		return (a % b == 0) ? b : gcd(b, a % b);
+	}
 }
