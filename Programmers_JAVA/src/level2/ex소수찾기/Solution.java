@@ -4,15 +4,17 @@ import java.util.HashSet;
 
 class Solution {
 
-	static StringBuilder sb = new StringBuilder();
-
+	StringBuilder sb = new StringBuilder();
+	HashSet<Integer> set = new HashSet<>();
+	char[] arr;
+	boolean[] visit;
+	
 	public int solution(String numbers) {
 
-		char[] arr = numbers.toCharArray();
-		boolean[] visit = new boolean[arr.length];
-		HashSet<Integer> set = new HashSet<>();
+		arr = numbers.toCharArray();
+		visit = new boolean[arr.length];
 
-		addNo(set, arr, visit, arr.length);
+		addNo();
 
 		return set.size();
 	}
@@ -30,7 +32,7 @@ class Solution {
 		return true;
 	}
 
-	public void addNo(HashSet<Integer> set, char[] arr, boolean[] visit, int length) {
+	public void addNo() {
 
 		if (sb.length() == arr.length) {
 			return;
@@ -43,7 +45,7 @@ class Solution {
 				int a = Integer.parseInt(sb.toString());
 				if (checkPrime(a))
 					set.add(a);
-				addNo(set, arr, visit, length);
+				addNo();
 				sb.deleteCharAt(sb.length() - 1);
 				visit[i] = false;
 			}
