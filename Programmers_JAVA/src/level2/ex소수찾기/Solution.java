@@ -21,9 +21,9 @@ class Solution {
 
 	public boolean checkPrime(int no) {
 
-		if (no == 0 | no == 1)
+		if (no == 0 || no == 1)
 			return false;
-		if (no == 2 | no == 3)
+		if (no == 2 || no == 3)
 			return true;
 		for (int i = 2; i * i <= no; i++) {
 			if (no % i == 0)
