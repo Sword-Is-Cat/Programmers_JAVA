@@ -1,4 +1,5 @@
-package level1.ex½ÇÆÐÀ²;
+package level1.exì‹¤íŒ¨ìœ¨;
+
 /*
  * https://programmers.co.kr/learn/courses/30/lessons/42889
  */
@@ -13,7 +14,7 @@ class Solution {
 		Integer[] ans = new Integer[N];
 		for (int i = 0; i < N; i++) {
 			ans[i] = i + 1;
-		} // Comparator »ç¿ëÀ» À§ÇÑ Integer¹è¿­. Á¤´ä µµÃâ ÈÄ int¹è¿­·Î º¯È¯ÇÏ¿© return.
+		} // Comparator ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Integerï¿½è¿­. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ intï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ return.
 		
 		
 		int[] clear = new int[N + 1];
@@ -24,7 +25,7 @@ class Solution {
 				else
 					break;
 			}
-		} // i¹ø ½ºÅ×ÀÌÁö¸¦ Å¬¸®¾îÇÑ »ç¶÷ÀÇ ¼ö = clear[i]
+		} // iï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ = clear[i]
 
 
 		Arrays.sort(ans, new Comparator<Integer>() {
@@ -32,18 +33,18 @@ class Solution {
 			public int compare(Integer i1, Integer i2) {
 				return Double.compare(failrate(i2), failrate(i1));
 			}
-			public double failrate(int i) { // ½ÇÆÐÀ² °è»ê ¸Þ¼Òµå
+			public double failrate(int i) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 				if (clear[i - 1] == 0)
 					return 0;
 				else
 					return (clear[i - 1] - clear[i]) / (double) clear[i - 1];
 			}
-		}); // ans¹è¿­À» failrate ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+		}); // ansï¿½è¿­ï¿½ï¿½ failrate ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		int[] answer = new int[N];
 		for (int i = 0; i < N; i++) {
 			answer[i] = ans[i];
-		} // Integer ¹è¿­À» int ¹è¿­·Î º¯°æÇÏ¿© return
+		} // Integer ï¿½è¿­ï¿½ï¿½ int ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ return
 
 		return answer;
 	}

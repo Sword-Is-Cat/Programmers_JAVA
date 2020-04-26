@@ -1,4 +1,5 @@
-package level5.ex¹æÀÇ°³¼ö;
+package level5.exë°©ì˜ê°œìˆ˜;
+
 
 /*
  * https://programmers.co.kr/learn/courses/30/lessons/49190
@@ -30,21 +31,21 @@ class Solution {
 			y += arr[arrow][1];
 			
 			pointSet.add(x + "," + y);
-			// ÇöÀç Á¡ÀÇ ÁÂÇ¥¸¦ pointSet¿¡ Ãß°¡
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ pointSetï¿½ï¿½ ï¿½ß°ï¿½
 			areaSet.add((x+lastx)+","+(x*lastx)+","+(y+lasty)+","+(y*lasty));
-			// ¼±ÀÌ »ç¿ëÇÏ´Â ¿µ¿ªÀÇ Á¤º¸¸¦ areaSet¿¡ Ãß°¡
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ areaSetï¿½ï¿½ ï¿½ß°ï¿½
 			lineSet.add((x+lastx)+","+(x*lastx)+","+(y+lasty)+","+(y*lasty)+","+head);
-			// »ý¼ºµÈ ¼±ÀÇ Á¤º¸¸¦ lineSet¿¡ Ãß°¡
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ lineSetï¿½ï¿½ ï¿½ß°ï¿½
 
 		}
 		
-		//Áßº¹Á¡ÀÇ¼ö = ÀüÃ¼Á¡ÀÇ¼ö(1+arrow.length) - Áßº¹Á¦°ÅÁ¡ÀÇ¼ö(pointSet.size())
-		//Áßº¹¼±ÀÇ¼ö = ÀüÃ¼¼±ÀÇ¼ö(arrow.length) - Áßº¹Á¦°Å¼±ÀÇ¼ö(lineSet.size())
-		//Áßº¹Á¡ÀÌ ¹ß»ýÇÒ¶§ ¹æÀÇ¼ö°¡ 1Áõ°¡ÇÏÁö¸¸, ¼±ÀÌ Áßº¹µÇ´Â Áßº¹Á¡ÀÇ °æ¿ì ÀÇ¹Ì°¡ ¾øÀ¸¹Ç·Î
-		//¹æÀÇ¼ö = Áßº¹Á¡ÀÇ¼ö - Áßº¹¼±ÀÇ¼ö = 1+lineSet.size()-pointSet.size()
+		//ï¿½ßºï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ = ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Ç¼ï¿½(1+arrow.length) - ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½(pointSet.size())
+		//ï¿½ßºï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ = ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Ç¼ï¿½(arrow.length) - ï¿½ßºï¿½ï¿½ï¿½ï¿½Å¼ï¿½ï¿½Ç¼ï¿½(lineSet.size())
+		//ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ç´ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½
+		//ï¿½ï¿½ï¿½Ç¼ï¿½ = ï¿½ßºï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ - ï¿½ßºï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ = 1+lineSet.size()-pointSet.size()
 		
-		//°°Àº¿µ¿ª³» XÀÚ·Î ±³Â÷ÇÏ´Â case¸¦ °í·ÁÇÏÁö ¸øÇØ Error ¹ß»ý
-		//¿µ¿ªÀº Áßº¹µÇ³ª ¼±ÀÌ Áßº¹ÇÏÁö ¾Ê´Â °æ¿ì(lineSet.size()-areaSet.size())¸¦ ´õÇØÁÖ¾î¾ß Á¤´äÀÏ°ÍÀ¸·Î ÃßÁ¤
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Xï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ caseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Error ï¿½ß»ï¿½
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ç³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½(lineSet.size()-areaSet.size())ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		int answer = 1+2*lineSet.size()-pointSet.size()-areaSet.size();
 		return answer;

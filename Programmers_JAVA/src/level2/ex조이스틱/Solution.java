@@ -1,4 +1,5 @@
-package level2.exÁ¶ÀÌ½ºÆ½;
+package level2.exì¡°ì´ìŠ¤í‹±;
+
 
 class Solution {
 	public int solution(String name) {
@@ -12,7 +13,7 @@ class Solution {
 		}
 
 		int min = 0;
-		// case1 ÀüÁø¸¸ ÇÏ´Â°æ¿ì
+		// case1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´Â°ï¿½ï¿½
 		char[] arrr = arr.clone();
 		for (int i = 0; i < arr.length; i++) {
 			arrr[i] = 'A';
@@ -22,7 +23,7 @@ class Solution {
 			}
 		}
 
-		// case2 ÈÄÁøµµ ÇÏ´Â°æ¿ì(Ã¹¹øÂ° À§Ä¡¿¡¼­ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ¿© ¸¶Áö¸·¹®ÀÚ·Î ÀÌµ¿)
+		// case2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´Â°ï¿½ï¿½(Ã¹ï¿½ï¿½Â° ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ìµï¿½)
 		for (int i = 0; i * 2 < arr.length - 1; i++) {
 			arrr = arr.clone();
 			for (int j = 0; j <= i; j++) {

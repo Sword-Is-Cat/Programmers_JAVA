@@ -1,4 +1,4 @@
-package level1.ex1Â÷_´ÙÆ®°ÔÀÓ;
+package level1.ex1ì°¨_ë‹¤íŠ¸ê²Œì„;
 
 /*
  * https://programmers.co.kr/learn/courses/30/lessons/17682

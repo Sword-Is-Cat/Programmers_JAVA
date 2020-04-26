@@ -1,7 +1,7 @@
-package level1.ex1Â÷_ºñ¹ĞÁöµµ;
+package level1.ex1ì°¨_ë¹„ë°€ì§€ë„;
 
 /*
- * ¹®Á¦ÁÖ¼Ò : https://programmers.co.kr/learn/courses/30/lessons/17681
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ : https://programmers.co.kr/learn/courses/30/lessons/17681
  */
 
 class Solution {

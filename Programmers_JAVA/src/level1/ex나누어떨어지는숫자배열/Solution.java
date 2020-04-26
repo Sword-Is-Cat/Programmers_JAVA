@@ -1,15 +1,15 @@
-package level1.ex³ª´©¾î¶³¾îÁö´Â¼ýÀÚ¹è¿­;
+package level1.exë‚˜ëˆ„ì–´ë–¨ì–´ì§€ëŠ”ìˆ«ìžë°°ì—´;
 
 /*
-¹®Á¦ ¼³¸í
-arrayÀÇ °¢ element Áß divisor·Î ³ª´©¾î ¶³¾îÁö´Â °ªÀ» ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ ¹è¿­À» ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö, solutionÀ» ÀÛ¼ºÇØÁÖ¼¼¿ä.
-divisor·Î ³ª´©¾î ¶³¾îÁö´Â element°¡ ÇÏ³ªµµ ¾ø´Ù¸é ¹è¿­¿¡ -1À» ´ã¾Æ ¹ÝÈ¯ÇÏ¼¼¿ä.
+ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+arrayï¿½ï¿½ ï¿½ï¿½ element ï¿½ï¿½ divisorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½, solutionï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.
+divisorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ elementï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½è¿­ï¿½ï¿½ -1ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¼ï¿½ï¿½ï¿½.
 
-Á¦ÇÑ»çÇ×
-arrÀº ÀÚ¿¬¼ö¸¦ ´ãÀº ¹è¿­ÀÔ´Ï´Ù.
-Á¤¼ö i, j¿¡ ´ëÇØ i ¡Á j ÀÌ¸é arr[i] ¡Á arr[j] ÀÔ´Ï´Ù.
-divisor´Â ÀÚ¿¬¼öÀÔ´Ï´Ù.
-array´Â ±æÀÌ 1 ÀÌ»óÀÎ ¹è¿­ÀÔ´Ï´Ù.
+ï¿½ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½
+arrï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½Ô´Ï´ï¿½.
+ï¿½ï¿½ï¿½ï¿½ i, jï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ i ï¿½ï¿½ j ï¿½Ì¸ï¿½ arr[i] ï¿½ï¿½ arr[j] ï¿½Ô´Ï´ï¿½.
+divisorï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+arrayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½Ô´Ï´ï¿½.
 */
 
 import java.util.ArrayList;

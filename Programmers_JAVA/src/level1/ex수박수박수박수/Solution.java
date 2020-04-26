@@ -1,4 +1,5 @@
-package level1.ex¼ö¹Ú¼ö¹Ú¼ö¹Ú¼ö;
+package level1.exìˆ˜ë°•ìˆ˜ë°•ìˆ˜ë°•ìˆ˜;
+
 
 class Solution {
 	public String solution(int n) {
@@ -8,13 +9,13 @@ class Solution {
 
 		for (int i = 0; i < n / 2; i++) {
 
-			sb.append("¼ö¹Ú");
+			sb.append("ï¿½ï¿½ï¿½ï¿½");
 
 		}
 
 		if (n % 2 == 1) {
 
-			sb.append("¼ö");
+			sb.append("ï¿½ï¿½");
 		}
 
 		answer = sb.toString();

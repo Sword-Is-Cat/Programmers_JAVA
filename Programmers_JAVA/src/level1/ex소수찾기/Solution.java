@@ -1,4 +1,5 @@
-package level1.ex¼Ò¼öÃ£±â;
+package level1.exì†Œìˆ˜ì°¾ê¸°;
+
 
 //return quantity of prime number(1~n)
 class Solution {
