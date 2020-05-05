@@ -1,5 +1,9 @@
 package level2.ex땅따먹기;
 
+/*
+ * https://programmers.co.kr/learn/courses/30/lessons/12913
+ */
+
 class Solution {
 	int solution(int[][] land) {
 		
