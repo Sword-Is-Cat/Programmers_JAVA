@@ -18,7 +18,7 @@ class Solution {
 			}
 		}
 
-		garo = brown / 2 - 2 - sero;
+		garo = yellow / sero;
 
 		int[] answer = { garo + 2, sero + 2 };
 		return answer;
