@@ -11,14 +11,14 @@ class Solution {
 		int garo = 0;
 		int sero = 0;
 
-		for (int i = 1; i <= brown / 2 - 2; i++) {
+		for (int i = 1; i < brown / 4; i++) {
 			if (i * (brown / 2 - 2 - i) == yellow) {
 				sero = i;
 				break;
 			}
 		}
 
-		garo = brown / 2 - 2 - sero;
+		garo = yellow / sero;
 
 		int[] answer = { garo + 2, sero + 2 };
 		return answer;
