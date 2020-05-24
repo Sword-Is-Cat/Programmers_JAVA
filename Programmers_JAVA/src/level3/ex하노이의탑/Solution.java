@@ -12,13 +12,10 @@ class Solution {
 		list = new ArrayList<>();
 
 		hanoi(n, 1, 3);
-
+		
 		int[][] answer = new int[list.size()][];
 
-		for (int i = 0; i < list.size(); i++)
-			answer[i] = list.get(i);
-
-		return answer;
+		return list.toArray(answer);
 	}
 
 	public void hanoi(int n, int from, int to) {
@@ -26,6 +23,7 @@ class Solution {
 		int[] arr = { from, to };
 
 		if (n == 1) {
+			
 			list.add(arr);
 		} else {
 
