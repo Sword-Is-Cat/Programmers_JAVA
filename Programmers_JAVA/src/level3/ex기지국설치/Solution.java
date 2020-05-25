@@ -18,8 +18,9 @@ class Solution {
 
 		}
 
-		if (checker <= n) {
-			answer += (n - checker) / (w * 2 + 1) + 1;
+		while (checker <= n) {
+			checker += w * 2 + 1;
+			answer++;
 		}
 
 		return answer;
