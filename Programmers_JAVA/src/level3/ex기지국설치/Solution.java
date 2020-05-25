@@ -5,21 +5,21 @@ class Solution {
 
 		int answer = 0;
 
-		int area = 1;
+		int checker = 1;
 
 		for (int i : stations) {
 
-			while (area < i - w) {
-				area += w * 2 + 1;
+			while (checker < i - w) {
+				checker += w * 2 + 1;
 				answer++;
 			}
 
-			area = i + w + 1;
+			checker = i + w + 1;
 
 		}
 
-		if (area <= n) {
-			answer += (n - area) / (w * 2 + 1) + 1;
+		if (checker <= n) {
+			answer += (n - checker) / (w * 2 + 1) + 1;
 		}
 
 		return answer;
