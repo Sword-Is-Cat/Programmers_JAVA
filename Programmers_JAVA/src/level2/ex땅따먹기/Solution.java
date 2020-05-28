@@ -18,7 +18,7 @@ class Solution {
 					if(j == k)
 						continue;
 					else
-						proc = Math.max(process,land[i+1][k]);
+						proc = Math.max(proc,land[i+1][k]);
 				}
 				land[i][j] += proc;
 			}
