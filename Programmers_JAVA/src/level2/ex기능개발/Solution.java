@@ -18,17 +18,20 @@ class Solution {
 			if (time * speeds[i] + progresses[i] < 100) {
 				time++;
 				i--;
+				
 			} else {
 
 				fin[i] = true;
 				int count = 1;
 
-				for (int j = i+1; j < progresses.length; j++) {
+				for (int j = i + 1; j < progresses.length; j++) {
 
 					if (!fin[j] && time * speeds[j] + progresses[j] >= 100) {
+						
 						fin[j] = true;
 						count++;
-					}else {
+					} else {
+						
 						break;
 					}
 
@@ -47,12 +50,5 @@ class Solution {
 
 		return answer;
 	}
-	
-	public static void main(String[] args) {
-		int[] prog = {40, 93, 30, 55, 60, 65};
-		int[] speed = {60, 1, 30, 5 , 10, 7};
-		for(int i : new Solution().solution(prog, speed)) {
-			System.out.println(i);
-		}
-	}
+
 }
