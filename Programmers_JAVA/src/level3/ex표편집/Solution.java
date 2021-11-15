@@ -1,58 +1,84 @@
 package level3.ex표편집;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Stack;
 
 class Solution {
+	public String solution(int n, int k, String[] cmds) {
 
-	public String solution(int n, int k, String[] cmd) {
-
-		Stack<Integer> recycleBin = new Stack<>();
-		LinkedList<Integer> list = new LinkedList<>();
-		int index = k;
-
-		for (int i = 0; i < n; i++) {
-			list.add(i);
+		Node[] nodes = new Node[n];
+		Node cur = null;
+		for (int i = 0; i < nodes.length; i++) {
+			nodes[i] = new Node(i);
+			if (i != 0) {
+				nodes[i].prev = nodes[i - 1];
+				nodes[i - 1].next = nodes[i];
+			}
+			if (i == k)
+				cur = nodes[i];
 		}
 
-		for (String row : cmd) {
+		Stack<Node> recycle = new Stack<>();
 
-			if (row.equals("C")) {
-				recycleBin.add(list.remove(index));
-				if(index == list.size())
-					index--;
-			}else if (row.equals("Z")) {
-				int temp = list.get(index);
-				list.add(recycleBin.pop());
-				Collections.sort(list);
-				if(temp != list.get(index))
-					index++;
+		for (String cmd : cmds) {
+
+			char order = cmd.charAt(0);
+
+			if (order == 'C') {
+
+				recycle.add(cur);
+
+				if (cur.prev != null)
+					cur.prev.next = cur.next;
+				if (cur.next != null)
+					cur.next.prev = cur.prev;
+
+				cur = cur.next == null ? cur.prev : cur.next;
+
+			} else if (order == 'Z') {
+
+				Node temp = recycle.pop();
+
+				if (temp.next != null)
+					temp.next.prev = temp;
+				if (temp.prev != null)
+					temp.prev.next = temp;
+
 			} else {
 
-				String[] temp = row.split(" ");
+				int move = Integer.parseInt(cmd.substring(2));
 
-				if (temp[0].equals("U"))
-					index -= Integer.parseInt(temp[1]);
-				else if (temp[0].equals("D"))
-					index += Integer.parseInt(temp[1]);
-
+				while (move > 0) {
+					cur = order == 'U' ? cur.prev : order == 'D' ? cur.next : cur;
+					move--;
+				}
 			}
-
 		}
 
-		char[] arr = new char[n];
-		
-		for(int i = 0 ; i<list.size() ; i++) {
-			arr[list.get(i)] = 'O';
+		while (cur.prev != null)
+			cur = cur.prev;
+
+		boolean[] exists = new boolean[n];
+
+		while (cur != null) {
+			exists[cur.index] = true;
+			cur = cur.next;
 		}
-		
-		return new String(arr).replace((char)0, 'X');
-	}
 
-	public static void main(String[] args) {
-		String[] arr = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z", "U 1", "C" };
-		System.out.println(new Solution().solution(8, 2, arr));
-	}
+		StringBuilder sb = new StringBuilder();
 
+		for (int i = 0; i < n; i++)
+			sb.append(exists[i] ? 'O' : 'X');
+
+		return sb.toString();
+	}
+}
+
+class Node {
+	int index;
+	Node prev;
+	Node next;
+
+	Node(int index) {
+		this.index = index;
+	}
 }
