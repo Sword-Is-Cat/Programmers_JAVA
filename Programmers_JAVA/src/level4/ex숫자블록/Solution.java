@@ -1,40 +1,29 @@
 package level4.ex숫자블록;
 
 class Solution {
-	long MAX = 10000000;
-
 	public int[] solution(long begin, long end) {
-		long[] res = new long[(int) (end - begin + 1)];
-		boolean[] changed = new boolean[res.length];
-		for (int i = 0; i < res.length; ++i) {
-			res[i] = begin + (long) i;
-		}
 
-		long max = (Double.valueOf(Math.sqrt(end))).longValue();
-		for (long i = 2; i <= Math.min(max, MAX); ++i) {
-			long start;
-			if (begin % i == 0)
-				start = begin;
-			else
-				start = (begin / i) * i + i;
-			for (long n = start; n <= end; n += i) {
-				int idx = (int) (n - begin);
-				if (changed[idx])
+		int length = (int) (end - begin + 1);
+		int[] answer = new int[length];
+
+		for (int i = 0; i < answer.length; i++)
+			answer[i] = calc(i + begin);
+
+		return answer;
+	}
+
+	public int calc(long index) {
+
+		if (index == 1)
+			return 0;
+
+		for (long i = 2; i * i <= index; i++)
+			if (index % i == 0) {
+				if (index / i <= 10000000)
+					return (int) (index / i);
+				else
 					continue;
-				if (n / i > MAX)
-					break;
-				res[idx] = n / i;
-				changed[idx] = true;
 			}
-		}
-		int[] tmp = new int[res.length];
-		for (int i = 0; i < res.length; ++i) {
-			if (!changed[i])
-				res[i] = 1;
-			tmp[i] = (int) res[i];
-		}
-		if (begin == 1)
-			tmp[0] = 0;
-		return tmp;
+		return 1;
 	}
 }
