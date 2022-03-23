@@ -1,50 +1,41 @@
 package level2.ex조이스틱;
 
-
 class Solution {
 	public int solution(String name) {
 
 		char[] arr = name.toCharArray();
-		int answer = 0;
+		int cnt = 0;
+		int move = arr.length - 1;
 
-		for (char ch : arr) {
-			int move = Math.min(ch - 'A', 'A' - ch + 26);
-			answer += move;
-		}
+		int index = -1;
 
-		int min = 0;
-		// case1 ������ �ϴ°��
-		char[] arrr = arr.clone();
 		for (int i = 0; i < arr.length; i++) {
-			arrr[i] = 'A';
-			if (check(arrr)) {
-				min = i;
-				break;
+
+			char ch = arr[i];
+			int gap = ch - 'A';
+			cnt += Math.min(gap, 26 - gap);
+			//System.out.println(ch + ":" + Math.min(gap, 26 - gap));
+
+			if (ch == 'A' && index == -1) {
+				index = i == 0 ? 1 : i;
+			} else if (ch != 'A' && index != -1) {
+				move = Math.min(move, (index - 1) * 2 + arr.length - i);
+				move = Math.min(move, index - 1 + (arr.length - i) * 2);
+				//System.out.println("move:" + move);
+				index = -1;
 			}
+
+		}
+		if (index != -1) {
+			move = Math.min(move, index - 1);
 		}
 
-		// case2 ������ �ϴ°��(ù��° ��ġ���� �������� �̵��Ͽ� ���������ڷ� �̵�)
-		for (int i = 0; i * 2 < arr.length - 1; i++) {
-			arrr = arr.clone();
-			for (int j = 0; j <= i; j++) {
-				arrr[j] = 'A';
-			}
-			for (int j = 1; j < arr.length - (i * 2) - 1; j++) {
-				arrr[arr.length - j] = 'A';
-				if (check(arrr))
-					min = (min > 2 * i + j) ? 2 * i + j : min;
-			}
-		}
-		return answer+min;
+		//System.out.println("cnt:" + cnt + ",move:" + move);
+
+		return cnt + move;
 	}
 
-	public boolean check(char[] arr) {
-
-		for (char ch : arr) {
-			if (ch != 'A')
-				return false;
-		}
-		return true;
+	public static void main(String[] args) {
+		new Solution().solution("JAN");
 	}
-
 }
