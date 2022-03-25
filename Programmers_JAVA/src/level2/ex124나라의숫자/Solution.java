@@ -6,14 +6,14 @@ public class Solution {
 
 	public String solution(int n) {
 
-		Stack<Character> stack = new Stack<>();
+		Stack<Integer> stack = new Stack<>();
 
 		while (n > 0) {
 			if (n % 3 == 0) {
-				stack.push('4');
+				stack.push(4);
 				n -= 3;
 			} else {
-				stack.push(Character.forDigit(n % 3, 10));
+				stack.push(n % 3);
 			}
 			n /= 3;
 		}
