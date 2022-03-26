@@ -9,11 +9,10 @@ public class Solution {
 		while (n > 0) {
 			if (n % 3 == 0) {
 				sb.append(4);
-				n -= 3;
 			} else {
 				sb.append(n % 3);
 			}
-			n /= 3;
+			n = (n - 1) / 3;
 		}
 
 		return sb.reverse().toString();
