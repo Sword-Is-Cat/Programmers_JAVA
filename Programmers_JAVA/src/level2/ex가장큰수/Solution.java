@@ -1,6 +1,5 @@
 package level2.ex가장큰수;
 
-
 /*
  * ���� ����
 0 �Ǵ� ���� ������ �־����� ��, ������ �̾� �ٿ� ���� �� �ִ� ���� ū ���� �˾Ƴ� �ּ���.
@@ -17,6 +16,28 @@ numbers�� ���Ҵ� 0 �̻� 1,000 �����Դϴ�.
 
 import java.util.Arrays;
 import java.util.Comparator;
+
+class Solution_ {
+	public String solution(int[] numbers) {
+
+		String[] arr = new String[numbers.length];
+
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = Integer.toString(numbers[i]);
+
+		Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
+
+		StringBuilder sb = new StringBuilder();
+
+		for (String str : arr)
+			sb.append(str);
+
+		while (sb.length() > 0 && sb.charAt(0) == '0')
+			sb.deleteCharAt(0);
+
+		return sb.length() == 0 ? "0" : sb.toString();
+	}
+}
 
 class Solution {
 	public String solution(int[] numbers) {
@@ -52,6 +73,8 @@ class Solution {
 
 		if (sb.length() == 0)
 			return "0";
+
+		sb.deleteCharAt(0);
 
 		return sb.toString();
 	}
@@ -129,15 +152,9 @@ class No { // Compare�� ���� ������ ���� Class�
 
 /////////////////////////////////
 /*
-�׽�Ʈ 1 ��	��� (73.97ms, 55.8MB)
-�׽�Ʈ 2 ��	��� (45.48ms, 59.1MB)
-�׽�Ʈ 3 ��	��� (92.05ms, 65.3MB)
-�׽�Ʈ 4 ��	��� (7.17ms, 52.7MB)
-�׽�Ʈ 5 ��	��� (76.24ms, 61.3MB)
-�׽�Ʈ 6 ��	��� (54.94ms, 61.8MB)
-�׽�Ʈ 7 ��	��� (1.20ms, 45.1MB)
-�׽�Ʈ 8 ��	��� (1.21ms, 45.1MB)
-�׽�Ʈ 9 ��	��� (1.11ms, 52.2MB)
-�׽�Ʈ 10 ��	��� (1.20ms, 50.5MB)
-�׽�Ʈ 11 ��	��� (1.26ms, 45.5MB)
-*/
+ * �׽�Ʈ 1 �� ��� (73.97ms, 55.8MB) �׽�Ʈ 2 �� ��� (45.48ms, 59.1MB) �׽�Ʈ 3 �� ���
+ * (92.05ms, 65.3MB) �׽�Ʈ 4 �� ��� (7.17ms, 52.7MB) �׽�Ʈ 5 �� ��� (76.24ms,
+ * 61.3MB) �׽�Ʈ 6 �� ��� (54.94ms, 61.8MB) �׽�Ʈ 7 �� ��� (1.20ms, 45.1MB) �׽�Ʈ 8
+ * �� ��� (1.21ms, 45.1MB) �׽�Ʈ 9 �� ��� (1.11ms, 52.2MB) �׽�Ʈ 10 �� ���
+ * (1.20ms, 50.5MB) �׽�Ʈ 11 �� ��� (1.26ms, 45.5MB)
+ */
