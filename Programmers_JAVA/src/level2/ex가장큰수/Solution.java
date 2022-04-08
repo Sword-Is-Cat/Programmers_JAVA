@@ -1,21 +1,36 @@
 package level2.ex가장큰수;
 
-/*
- * ���� ����
-0 �Ǵ� ���� ������ �־����� ��, ������ �̾� �ٿ� ���� �� �ִ� ���� ū ���� �˾Ƴ� �ּ���.
-
-���� ���, �־��� ������ [6, 10, 2]��� [6102, 6210, 1062, 1026, 2610, 2106]�� ���� �� �ְ�, ���� ���� ū ���� 6210�Դϴ�.
-
-0 �Ǵ� ���� ������ ��� �迭 numbers�� �Ű������� �־��� ��, ������ ���ġ�Ͽ� ���� �� �ִ� ���� ū ���� ���ڿ��� �ٲپ� return �ϵ��� solution �Լ��� �ۼ����ּ���.
-
-���� ����
-numbers�� ���̴� 1 �̻� 100,000 �����Դϴ�.
-numbers�� ���Ҵ� 0 �̻� 1,000 �����Դϴ�.
-������ �ʹ� Ŭ �� ������ ���ڿ��� �ٲپ� return �մϴ�.
- */
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.*;
+
+class Solution {
+	public String solution(int[] numbers) {
+
+		List<Integer> list = new ArrayList<>();
+
+		for (int no : numbers)
+			list.add(no);
+
+		Collections.sort(list, (a, b) -> strSum(b, a) - strSum(a, b));
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int no : list)
+			sb.append(no);
+
+		return sb.charAt(0) == '0' ? "0" : sb.toString();
+	}
+
+	int strSum(int a, int b) {
+
+		a *= b < 10 ? 10 : b < 100 ? 100 : b < 1000 ? 1000 : 10000;
+
+		return a + b;
+	}
+}
 
 class Solution_ {
 	public String solution(int[] numbers) {
@@ -39,7 +54,7 @@ class Solution_ {
 	}
 }
 
-class Solution {
+class Solution__ {
 	public String solution(int[] numbers) {
 
 		StringBuilder sb = new StringBuilder();
