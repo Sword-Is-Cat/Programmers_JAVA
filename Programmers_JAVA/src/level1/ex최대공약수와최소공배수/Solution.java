@@ -6,16 +6,14 @@ package level1.ex최대공약수와최소공배수;
 
 class Solution {
 	public int[] solution(int n, int m) {
-
-		int gcd = gcd(n, m);
-		int lcm = n * m / gcd;
-
-		int[] answer = { gcd, lcm };
-
-		return answer;
+		return new int[]{gcd(n,m), lcm(n,m)};
 	}
 
-	public int gcd(int n, int m) {
+	int gcd(int n, int m) {
 		return (n % m == 0) ? m : gcd(m, n % m);
 	}
+    
+    int lcm(int n, int m){
+        return n / gcd(n, m) * m ;
+    }
 }
