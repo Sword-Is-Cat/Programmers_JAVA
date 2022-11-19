@@ -25,8 +25,6 @@ class Solution {
 		double sum = 0D;
 		int length = scores.length;
 
-		double avg = 0D;
-
 		for (int i = 0; i < scores.length; i++) {
 
 			int score = scores[i][index];
