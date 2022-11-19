@@ -66,7 +66,6 @@ class Solution {
 
 		int cntP = 0;
 		int cntX = 0;
-		int cntO = 0;
 
 		for (int ii = 0; ii < 2; ii++) {
 			for (int jj = 0; jj < 2; jj++) {
@@ -75,8 +74,7 @@ class Solution {
 					cntP++;
 				else if (ch == 'X')
 					cntX++;
-				else if (ch == 'O')
-					cntO++;
+				else if (ch == 'O') {}
 			}
 		}
 
