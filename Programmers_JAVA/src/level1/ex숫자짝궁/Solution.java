@@ -33,7 +33,7 @@ class Solution {
 
 		String str = sb.reverse().toString();
 
-		if (str.replaceAll("0", "").length() == 0)
+		if (str.charAt(0) == '0')
 			return "0";
 
 		return str;
