@@ -9,9 +9,8 @@ class Solution {
 		initItemIndex(want);
 
 		// 첫 10일간의 할인항목 중 원하는 상품 할인수를 카운트
-		int[] dcCnt = new int[want.length];
 		for (int i = 0; i < 10; i++) {
-			addArrayValue(dcCnt, indexOf(discount[i]), 1);
+			addArrayValue(number, indexOf(discount[i]), -1);
 		}
 
 		int answer = 0;
@@ -21,15 +20,11 @@ class Solution {
 
 			// 첫날은 할인cnt 업데이트 하지 않는다
 			if (date > 0) {
-				// 다음 할인 품목 cnt추가
-				String nextSale = discount[date + 9];
-				addArrayValue(dcCnt, indexOf(nextSale), 1);
-				// 마지막 할인품목 cnt제거
-				String lastSale = discount[date - 1];
-				addArrayValue(dcCnt, indexOf(lastSale), -1);
+				addArrayValue(number, indexOf(discount[date + 9]), -1);
+				addArrayValue(number, indexOf(discount[date - 1]), 1);
 			}
-			
-			if (isSame(number, dcCnt)) {
+
+			if (isAllZero(number)) {
 				answer++;
 			}
 		}
@@ -54,11 +49,11 @@ class Solution {
 			array[index] += value;
 	}
 
-	boolean isSame(int[] number, int[] dcCnt) {
-		if (number.length != dcCnt.length)
+	boolean isAllZero(int[] number) {
+		if (number == null)
 			return false;
-		for (int i = 0; i < number.length; i++) {
-			if (number[i] != dcCnt[i])
+		for (int no : number) {
+			if (no != 0)
 				return false;
 		}
 		return true;
