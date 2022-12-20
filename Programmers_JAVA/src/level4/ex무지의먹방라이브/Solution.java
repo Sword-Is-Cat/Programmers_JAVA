@@ -14,12 +14,12 @@ class Solution {
 			foods.add(food);
 		}
 
-		int last = 0;
-		while (!foods.isEmpty() && k - ((long) foods.peek()[1] - last) * foods.size() >= 0) {
-			int temp = foods.size();
+		int cycle = 0;
+		while (!foods.isEmpty() && (long) (foods.peek()[1] - cycle) * foods.size() <= k) {
+			int cnt = foods.size();
 			int[] food = foods.poll();
-			k -= (long) temp * (food[1] - last);
-			last = food[1];
+			k -= (long) cnt * (food[1] - cycle);
+			cycle = food[1];
 		}
 
 		if (foods.isEmpty())
@@ -28,8 +28,6 @@ class Solution {
 		List<int[]> list = new ArrayList<>(foods);
 		list.sort((a, b) -> (a[0] - b[0]));
 
-		k = k % list.size();
-
-		return list.get((int) k)[0] + 1;
+		return list.get((int) (k % list.size()))[0] + 1;
 	}
 }
