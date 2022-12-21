@@ -6,21 +6,12 @@ package level2.ex카펫;
 
 class Solution {
 	public int[] solution(int brown, int yellow) {
-
-		/* garo, sero 는 각각 노란 칸의 가로의길이, 세로의길이 */
-		int garo = 0;
-		int sero = 0;
-
-		for (int i = 1; i < brown / 4; i++) {
-			if (i * (brown / 2 - 2 - i) == yellow) {
-				sero = i;
-				break;
+		for (int y_height = 1; y_height < brown /4; y_height++) {
+			int y_width = brown / 2 - 2 - y_height;
+			if (y_height * y_width == yellow) {
+				return new int[]{ yellow / y_height + 2, y_height + 2 };
 			}
 		}
-
-		garo = yellow / sero;
-
-		int[] answer = { garo + 2, sero + 2 };
-		return answer;
+		return null;
 	}
 }
