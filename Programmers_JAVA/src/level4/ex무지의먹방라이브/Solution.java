@@ -3,7 +3,6 @@ package level4.ex무지의먹방라이브;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.stream.Stream;
 
 class Solution {
 	public int solution(int[] food_times, long k) {
