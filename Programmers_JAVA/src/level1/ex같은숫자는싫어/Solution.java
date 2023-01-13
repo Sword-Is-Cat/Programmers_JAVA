@@ -1,7 +1,5 @@
 package level1.ex같은숫자는싫어;
 
-/* https://programmers.co.kr/learn/courses/30/lessons/12906 */
-
 import java.util.ArrayList;
 
 public class Solution {
@@ -9,23 +7,12 @@ public class Solution {
 
 		ArrayList<Integer> list = new ArrayList<>();
 
-		int temp = -1;
-		
-		for (int i : arr) {
-			if (temp == i)
-				continue;
-			else {
-				list.add(i);
-				temp = i;
+		for (int i = 0; i < arr.length; i++) {
+			if (i == 0 || arr[i - 1] != arr[i]) {
+				list.add(arr[i]);
 			}
 		}
 
-		int[] answer = new int[list.size()];
-
-		for (int i = 0; i < answer.length; i++) {
-			answer[i] = list.get(i);
-		}
-
-		return answer;
+		return list.stream().mapToInt(i -> i).toArray();
 	}
 }
