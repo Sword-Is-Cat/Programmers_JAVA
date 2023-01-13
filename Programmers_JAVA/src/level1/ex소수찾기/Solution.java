@@ -1,56 +1,25 @@
 package level1.ex소수찾기;
 
+import java.util.Arrays;
 
-//return quantity of prime number(1~n)
 class Solution {
 	public int solution(int n) {
 
-		int answer = 0;
+		int[] primes = new int[n + 1];
+		Arrays.fill(primes, 1);
 
-		boolean[] list = new boolean[n - 1];
+		primes[0] = 0;
+		primes[1] = 0;
 
-		for (int i = 0; i < n - 1; i++) {
-
-			list[i] = true;
-
-		}
-
-		for (int i = 2; i * i <= n; i++) {
-
-			if (list[i - 2]) {
-
-				for (int j = i; i * j <= n; j++) {
-
-					if (list[i * j - 2]) {
-
-						list[i * j - 2] = false;
-
-					}
-
+		for (int no = 2; no * no <= n; no++) {
+			if (primes[no] == 1) {
+				for (int mul = 2; mul * no <= n; mul++) {
+					primes[mul * no] = 0;
 				}
 			}
-
 		}
-
-		for (boolean flag : list) {
-
-			if (flag)
-				answer++;
-		}
-
-		return answer;
+		
+		return Arrays.stream(primes).sum();
 
 	}
-
-//	public static void main(String[] args) {
-//		
-//		long start = System.currentTimeMillis();
-//		Solution s = new Solution();
-//		System.out.println(s.solution(1000000));
-//		long end = System.currentTimeMillis();
-//		
-//		System.out.println(end-start);
-//		
-//	}
-
 }
