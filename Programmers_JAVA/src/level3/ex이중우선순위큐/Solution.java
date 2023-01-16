@@ -34,7 +34,7 @@ class Solution {
 				}
 				cnt--;
 
-				//System.out.println("delete " + temp);
+				System.out.println("delete " + temp);
 
 			}
 			

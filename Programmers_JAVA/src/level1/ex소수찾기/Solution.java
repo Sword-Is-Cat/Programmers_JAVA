@@ -6,20 +6,16 @@ class Solution {
 	public int solution(int n) {
 
 		int[] primes = new int[n + 1];
-		Arrays.fill(primes, 1);
-
-		primes[0] = 0;
-		primes[1] = 0;
+		primes[0] = 1;
+		primes[1] = 1;
 
 		for (int no = 2; no * no <= n; no++) {
-			if (primes[no] == 1) {
+			if (primes[no] == 0) {
 				for (int mul = 2; mul * no <= n; mul++) {
-					primes[mul * no] = 0;
+					primes[mul * no] = 1;
 				}
 			}
 		}
-		
-		return Arrays.stream(primes).sum();
-
+		return n + 1 - Arrays.stream(primes).sum();
 	}
 }

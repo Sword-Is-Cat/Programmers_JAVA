@@ -6,29 +6,19 @@ class Solution {
 
 	public int solution(int n) {
 
-		int answer = 0;
+		int[] dp = new int[n];
+		int idx = 0;
 
-		while (n-- > 0)
-			answer = next();
-
-		return answer;
+		while (idx < n) {
+			dp[idx++] = next();
+		}
+		return dp[n - 1];
 	}
 
 	int next() {
-
 		cache++;
-
-		if (cache % 3 == 0)
+		if (cache % 3 == 0 || cache % 10 == 3 || cache / 10 % 10 == 3)
 			return next();
-
-		int temp = cache;
-
-		while (temp > 0) {
-			if (temp % 10 == 3)
-				return next();
-			temp /= 10;
-		}
-
 		return cache;
 	}
 }
