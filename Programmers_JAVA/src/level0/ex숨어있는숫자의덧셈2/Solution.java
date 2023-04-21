@@ -1,4 +1,4 @@
-package level0.숨어있는숫자의덧셈2;
+package level0.ex숨어있는숫자의덧셈2;
 
 class Solution {
 	public int solution(String my_string) {
