@@ -1,22 +1,26 @@
 package level2.ex유사칸토어비트열;
 
-class Solution {
+public class Solution {
+
 	public int solution(int n, long l, long r) {
-		int answer = 0;
-
-		for (long val = l; val <= r; val++) {
-			answer += query(n, val - 1);
-		}
-
-		return answer;
+		return countOneToIndex(r) - countOneToIndex(l - 1);
 	}
 
-	int query(int n, long l) {
-		if (n == 0 || l == 0)
+	private int countOneToIndex(long index) {
+		if (index == 0 || index == 1)
+			return (int) index;
+		long share = index / 5;
+		int remain = (int) (index % 5);
+		if (remain > 2)
+			remain--;
+		return 4 * countOneToIndex(share) + remain * numberAtIndex(share + 1);
+	}
+
+	private int numberAtIndex(long index) {
+		if (index == 1)
 			return 1;
-		if (l % 5 == 2)
+		if (index % 5 == 3)
 			return 0;
-		return query(n - 1, l / 5);
+		return numberAtIndex((index + 4) / 5);
 	}
-
 }
