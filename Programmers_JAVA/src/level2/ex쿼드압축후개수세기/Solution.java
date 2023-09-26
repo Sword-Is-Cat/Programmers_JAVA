@@ -20,14 +20,14 @@ class Solution {
 
 		// value는 해당 영역의 첫칸의 값, allMatch는 현재쿼드 전체값의 일치여부
 		int value = arr[row][col];
-		boolean allMatch = true;
+		boolean match = true;
 
 		// 현재쿼드 전체값 일치여부 검증
-		for (int i = row; allMatch && i < row + length; i++)
-			for (int j = col; allMatch && j < col + length; j++)
-				allMatch &= value == arr[i][j];
+		for (int i = row; match && i < row + length; i++)
+			for (int j = col; match && j < col + length; j++)
+				match &= value == arr[i][j];
 
-		if (allMatch) {
+		if (match) {
 			counter[value]++;
 		} else {
 			length /= 2;
