@@ -30,11 +30,12 @@ class Solution {
 		if (allMatch) {
 			counter[value]++;
 		} else {
+			length /= 2;
 			// 일치하지 않는 경우 쿼드 4등분 후 각각 재검증
-			compress(arr, row, col, length / 2, counter);
-			compress(arr, row + length / 2, col, length / 2, counter);
-			compress(arr, row, col + length / 2, length / 2, counter);
-			compress(arr, row + length / 2, col + length / 2, length / 2, counter);
+			compress(arr, row			, col			, length, counter);
+			compress(arr, row + length	, col			, length, counter);
+			compress(arr, row			, col + length	, length, counter);
+			compress(arr, row + length	, col + length	, length, counter);
 		}
 
 		return counter;
