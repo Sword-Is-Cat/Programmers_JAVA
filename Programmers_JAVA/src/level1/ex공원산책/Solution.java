@@ -1,73 +1,42 @@
 package level1.ex공원산책;
 
-import java.util.HashMap;
-
 class Solution {
-
-	int rowLength, colLength;
-	char[][] grid;
-	HashMap<Character, Integer> dictionary;
-	int[][] direct = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
-
 	public int[] solution(String[] park, String[] routes) {
-
-		dictionary = buildDictionary();
-
-		rowLength = park.length;
-		colLength = park[0].length();
-		grid = new char[rowLength][];
-		for (int i = 0; i < rowLength; i++)
-			grid[i] = park[i].toCharArray();
-
-		int[] coord = findStart();
-
+		int[] coord = findStartCoord(park);
 		for (String route : routes) {
-			move(coord, route);
+			coord = executeMoveQuery(park, route, coord);
 		}
-
 		return coord;
 	}
 
-	private void move(int[] coord, String moveQuery) {
-
-		int d = dictionary.get(moveQuery.charAt(0)), distance = moveQuery.charAt(2) - '0';
-		int oriRow = coord[0], oriCol = coord[1];
-
-		while (distance-- > 0) {
-
-			coord[0] += direct[d][0];
-			coord[1] += direct[d][1];
-			if (coord[0] < 0 || coord[0] == rowLength || coord[1] < 0 || coord[1] == colLength
-					|| grid[coord[0]][coord[1]] == 'X') {
-				coord[0] = oriRow;
-				coord[1] = oriCol;
-				return;
-			}
-
-		}
-
-	}
-
-	private int[] findStart() {
-		for (int row = 0; row < rowLength; row++) {
-			for (int col = 0; col < colLength; col++) {
-				if (grid[row][col] == 'S')
-					return new int[] { row, col };
+	private int[] findStartCoord(String[] park) {
+		for (int r = 0; r < park.length; r++) {
+			for (int c = 0; c < park[r].length(); c++) {
+				if (park[r].charAt(c) == 'S') {
+					return new int[] { r, c };
+				}
 			}
 		}
 		return null;
 	}
 
-	private HashMap<Character, Integer> buildDictionary() {
+	private int[] executeMoveQuery(String[] park, String query, int[] coord) {
 
-		HashMap<Character, Integer> map = new HashMap<>();
+		char dir = query.charAt(0);
+		int distance = query.charAt(2) - '0';
 
-		// 방향 동:0 / 서:1 / 남:2 / 북:3
-		map.put('E', 0);
-		map.put('W', 1);
-		map.put('S', 2);
-		map.put('N', 3);
+		int dRow = dir == 'S' ? 1 : dir == 'N' ? -1 : 0;
+		int dCol = dir == 'E' ? 1 : dir == 'W' ? -1 : 0;
 
-		return map;
+		int row = coord[0], col = coord[1];
+
+		while (distance-- > 0) {
+			row += dRow;
+			col += dCol;
+			if (row < 0 || park.length <= row || col < 0 || col <= park[row].length() || park[row].charAt(col) == 'X')
+				return coord;
+		}
+
+		return new int[] { row, col };
 	}
 }
