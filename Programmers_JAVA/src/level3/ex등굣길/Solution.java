@@ -1,49 +1,28 @@
 package level3.ex등굣길;
 
 class Solution {
-
-	int m;
-	int n;
-	Integer[][] map;
-
 	public int solution(int m, int n, int[][] puddles) {
 
-		this.m = m;
-		this.n = n;
+		final int mod = (int) 1e9 + 7;
+		int[][] field = new int[m][n];
 
-		map = new Integer[m][n];
-
-		map[0][0] = 1;
-
-		for (int[] arr : puddles) {
-			map[arr[0] - 1][arr[1] - 1] = 0;
+		field[0][0] = 1;
+		for (int[] puddle : puddles) {
+			field[puddle[0] - 1][puddle[1] - 1] = -1;
 		}
 
-		for (int i = 1; i < m + n - 1; i++)
-			process(i);
-
-		return map[m - 1][n - 1];
-	}
-
-	public void process(int depth) {
-
-		for (int i = 0; i <= depth; i++) {
-
-			int j = depth - i;
-
-			if (i >= 0 && i < m && j >= 0 && j < n) {
-
-				if (map[i][j] == null) {
-
-					if (i == 0) {
-						map[i][j] = map[i][j - 1];
-					} else if (j == 0) {
-						map[i][j] = map[i - 1][j];
-					} else {
-						map[i][j] = (map[i - 1][j] + map[i][j - 1]) % 1000000007;
-					}
-				}
+		for (int row = 0; row < m; row++) {
+			for (int col = 0; col < n; col++) {
+				if (row + col == 0 || field[row][col] == -1)
+					continue;
+				field[row][col] += (getValue(field, row - 1, col) + getValue(field, row, col - 1)) % mod;
 			}
 		}
+		return field[m - 1][n - 1];
 	}
+
+	private int getValue(int[][] field, int row, int col) {
+		return row < 0 || col < 0 || field[row][col] == -1 ? 0 : field[row][col];
+	}
+
 }
