@@ -1,82 +1,74 @@
 package level2.PCCP02;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 
 class Solution {
 
-	int rowMax, colMax;
-	int[][] d = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
+	int[][] dir = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+	int maxRow, maxCol;
 
 	public int solution(int[][] land) {
 
-		rowMax = land.length;
-		colMax = land[0].length;
+		maxRow = land.length;
+		maxCol = land[0].length;
 
-		int[][] areaNum = new int[rowMax][colMax];
-		int no = 1;
-		List<Integer> oils = new ArrayList<>();
-		oils.add(0);
+		int[][] areaNum = new int[maxRow][maxCol];
+		int areaNo = 0;
 
-		for (int row = 0; row < rowMax; row++) {
-			for (int col = 0; col < colMax; col++) {
+		for (int row = 0; row < maxRow; row++) {
+			for (int col = 0; col < maxCol; col++) {
 				if (land[row][col] == 1 && areaNum[row][col] == 0) {
-					oils.add(countOilBalance(land, row, col, areaNum, no++));
+					markArea(land, areaNum, row, col, ++areaNo);
 				}
 			}
 		}
 
-		int answer = 0, temp = 0;
-		boolean[] getOil = new boolean[no];
+		int[] areaOil = new int[areaNo + 1];
 
-		for (int col = 0; col < colMax; col++) {
-			Arrays.fill(getOil, false);
-			temp = 0;
-			for (int row = 0; row < rowMax; row++) {
-				getOil[areaNum[row][col]] = true;
-			}
-
-			for (int i = 0; i < getOil.length; i++) {
-				if (getOil[i]) {
-					temp += oils.get(i);
+		for (int row = 0; row < maxRow; row++) {
+			for (int col = 0; col < maxCol; col++) {
+				if (areaNum[row][col] != 0) {
+					areaOil[areaNum[row][col]]++;
 				}
 			}
+		}
 
+		boolean[] visit = new boolean[areaOil.length];
+		int answer = 0, temp = 0;
+
+		for (int col = 0; col < maxCol; col++) {
+
+			Arrays.fill(visit, false);
+			temp = 0;
+
+			for (int row = 0; row < maxRow; row++) {
+				int area = areaNum[row][col];
+				if (area != 0 && !visit[area]) {
+					visit[area] = true;
+					temp += areaOil[area];
+				}
+			}
 			answer = Math.max(answer, temp);
+
 		}
 
 		return answer;
 	}
 
-	private int countOilBalance(int[][] land, int row, int col, int[][] areaNum, int no) {
+	private void markArea(int[][] land, int[][] areaNum, int row, int col, int areaNo) {
 
-		int oil = 0;
+		if (row < 0 || row == maxRow || col < 0 || col == maxCol)
+			return;
 
-		Queue<int[]> queue = new LinkedList<>();
-		queue.add(new int[] { row, col });
+		if (land[row][col] == 0 || areaNum[row][col] != 0)
+			return;
 
-		while (!queue.isEmpty()) {
-			int[] coord = queue.poll();
-			if (isCoordValid(coord) && land[coord[0]][coord[1]] == 1 && areaNum[coord[0]][coord[1]] == 0) {
-				oil++;
-				areaNum[coord[0]][coord[1]] = no;
-				for (int i = 0; i < 4; i++) {
-					queue.add(new int[] { coord[0] + d[i][0], coord[1] + d[i][1] });
-				}
-			}
+		areaNum[row][col] = areaNo;
+
+		for (int d = 0; d < dir.length; d++) {
+			markArea(land, areaNum, row + dir[d][0], col + dir[d][1], areaNo);
 		}
 
-		return oil;
 	}
 
-	private boolean isCoordValid(int[] coord) {
-		return isCoordValid(coord[0], coord[1]);
-	}
-
-	private boolean isCoordValid(int row, int col) {
-		return 0 <= row && row < rowMax && 0 <= col && col < colMax;
-	}
 }
