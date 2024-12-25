@@ -1,54 +1,36 @@
 package level0.ex안전지대;
 
 class Solution {
+
+	int[][] dir = { { -1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 }, { 1, 0 }, { 1, -1 }, { 0, -1 }, { -1, -1 } };
+	int rMax = 0, cMax = 0;
+
 	public int solution(int[][] board) {
 
-		for (int row = 0; row < board.length; row++) {
-			for (int col = 0; col < board.length; col++) {
+		rMax = board.length;
+		cMax = board[0].length;
+		int answer = rMax * cMax;
+
+		for (int row = 0; row < rMax; row++) {
+			for (int col = 0; col < cMax; col++) {
 				if (board[row][col] == 1) {
-					findMine(board, row, col);
+					answer--;
+					answer -= findMine(board, row, col);
 				}
 			}
 		}
-
-		int answer = 0;
-
-		for (int row = 0; row < board.length; row++) {
-			for (int col = 0; col < board.length; col++) {
-				if (board[row][col] == 0) {
-					answer++;
-				}
-			}
-		}
-
 		return answer;
 	}
 
-	void findMine(int[][] board, int row, int col) {
-
-		if (row - 1 >= 0 && col - 1 >= 0 && board[row - 1][col - 1] == 0)
-			board[row - 1][col - 1] = 2;
-
-		if (row - 1 >= 0 && board[row - 1][col] == 0)
-			board[row - 1][col] = 2;
-
-		if (row - 1 >= 0 && col + 1 < board.length && board[row - 1][col + 1] == 0)
-			board[row - 1][col + 1] = 2;
-
-		if (row + 1 < board.length && col - 1 >= 0 && board[row + 1][col - 1] == 0)
-			board[row + 1][col - 1] = 2;
-
-		if (row + 1 < board.length && board[row + 1][col] == 0)
-			board[row + 1][col] = 2;
-
-		if (row + 1 < board.length && col + 1 < board.length && board[row + 1][col + 1] == 0)
-			board[row + 1][col + 1] = 2;
-
-		if (col - 1 >= 0 && board[row][col - 1] == 0)
-			board[row][col - 1] = 2;
-
-		if (col + 1 < board.length && board[row][col + 1] == 0)
-			board[row][col + 1] = 2;
-
+	private int findMine(int[][] board, int row, int col) {
+		int result = 0;
+		for (int d = 0; d < dir.length; d++) {
+			int r = row + dir[d][0], c = col + dir[d][1];
+			if (0 <= r && 0 <= c && r < rMax && c < cMax && board[r][c] == 0) {
+				result++;
+				board[r][c] = -1;
+			}
+		}
+		return result;
 	}
 }
