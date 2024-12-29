@@ -1,75 +1,76 @@
 package level2.ex미로탈출;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 
 class Solution {
 
-	char[][] map;
-	int rowEnd, colEnd;
-
-	int[] dr = { -1, 1, 0, 0 }, dc = { 0, 0, -1, 1 };
+	int[][] dir = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
 	public int solution(String[] maps) {
 
-		rowEnd = maps.length;
-		colEnd = maps[0].length();
+		int rMax = maps.length, cMax = maps[0].length();
+		char[][] grid = new char[rMax][];
+		int[] stt = null, lev = null, end = null;
 
-		map = new char[rowEnd][];
-		for (int i = 0; i < rowEnd; i++)
-			map[i] = maps[i].toCharArray();
+		for (int i = 0; i < rMax; i++)
+			grid[i] = maps[i].toCharArray();
 
-		int way1 = findWay('S', 'L');
-		int way2 = findWay('L', 'E');
+		for (int r = 0; r < rMax; r++) {
+			for (int c = 0; c < cMax; c++) {
+				switch (grid[r][c]) {
+				case 'S':
+					stt = new int[] { r, c };
+					break;
+				case 'L':
+					lev = new int[] { r, c };
+					break;
+				case 'E':
+					end = new int[] { r, c };
+					break;
+				}
+			}
+		}
 
-		return way1 == -1 || way2 == -1 ? -1 : way1 + way2;
+		int dist1 = calcDistance(stt, lev, grid);
+		if (dist1 == -1)
+			return -1;
+
+		int dist2 = calcDistance(lev, end, grid);
+		if (dist2 == -1)
+			return -1;
+
+		return dist1 + dist2;
 	}
 
-	protected int findWay(char s, char e) {
+	private int calcDistance(int[] from, int[] to, char[][] grid) {
+		
+		ArrayDeque<int[]> queue = new ArrayDeque<>();
+		queue.add(from);
+		boolean[][] visit = new boolean[grid.length][grid[0].length];
+		visit[from[0]][from[1]] = true;
+		int distance = 0;
 
-		int[] stt = findCoord(s), end = findCoord(e);
-		boolean[][] visit = new boolean[rowEnd][colEnd];
-
-		ArrayList<int[]> prev, curr = new ArrayList<>();
-		curr.add(stt);
-		int move = 0;
-
-		while (!visit[end[0]][end[1]] && !curr.isEmpty()) {
-
-			prev = curr;
-			curr = new ArrayList<>();
-
-			for (int[] coord : prev) {
-
-				for (int di = 0; di < 4; di++) {
-					int row = coord[0] + dr[di], col = coord[1] + dc[di];
-					if (isSafe(row, col) && !visit[row][col]) {
-						visit[row][col] = true;
-						curr.add(new int[] { row, col });
+		while (!queue.isEmpty()) {
+			int loop = queue.size();
+			while (loop-- > 0) {
+				int[] coord = queue.poll();
+				if (coord[0] == to[0] && coord[1] == to[1])
+					return distance;
+				for (int d = 0; d < dir.length; d++) {
+					int r = coord[0] + dir[d][0], c = coord[1] + dir[d][1];
+					if (isValid(r, c, grid.length, grid[0].length) && grid[r][c] != 'X' && !visit[r][c]) {
+						visit[r][c] = true;
+						queue.add(new int[] { r, c });
 					}
 				}
 			}
-
-			move++;
+			distance++;
 		}
-		return curr.isEmpty() ? -1 : move;
+
+		return -1;
 	}
 
-	protected int[] findCoord(char c) {
-		for (int row = 0; row < rowEnd; row++) {
-			for (int col = 0; col < colEnd; col++) {
-				if (map[row][col] == c) {
-					return new int[] { row, col };
-				}
-			}
-		}
-		return null;
-	}
-
-	protected boolean isSafe(int[] coord) {
-		return isSafe(coord[0], coord[1]);
-	}
-
-	protected boolean isSafe(int row, int col) {
-		return 0 <= row && 0 <= col && row < rowEnd && col < colEnd && map[row][col] != 'X';
+	private boolean isValid(int row, int col, int rMax, int cMax) {
+		return row >= 0 && col >= 00 && row < rMax && col < cMax;
 	}
 }
